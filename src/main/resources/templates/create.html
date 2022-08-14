@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" th:href="@{images/logo.png}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#343a40" />
+  <meta
+          name="description"
+          content="Zor.Store | Реферральная программа"
+  />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Zor.Store | Реферральная программа</title>
+  <style>
+    body{
+      background-color: #faf8ef;
+    }
+    h5{
+      color: #343a40;
+    }
+    .name{
+      color: #343a40;
+    }
+    .love{
+      color: #343a40 !important;
+    }
+    /*----------------- Mail-------------------- */
+    #email{
+      text-decoration: none;
+      float: right;
+      color:#343a40;
+    }
+    .footer{
+      margin-top: 5% !important;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 479px) {
+      .footer{
+        margin-top: 35% !important;
+      }
+    }
+    .mt-4 {
+      margin-top: 2.5rem !important;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="media mt-5">
+    <img th:src="@{/images/logo.png}" class="m-3" alt="image" width="132px" height="75px">
+    <div class="media-body m-2">
+      <h5 class="align-items-center mt-2">Zor.Store Referral</h5>
+      <p>Привет! Здесь твоя реферральная ссылка для участия в акциях Zor.Store</p>
+    </div>
+  </div>
+  <div class="mt-4">
+    <a id="referralLink" th:href="${shortUrl}" th:text="${shortUrl}"
+       class="btn btn-outline-primary btn-block"
+       role="button"
+       target="_blank"
+       data-toggle="tooltip"
+       data-placement="top"
+       title="Твоя уникальная ссылка, нажми чтобы скопировать">
+      <i class="fa fa-link">&nbsp;</i>
+    </a>
+    <br>
+    <a th:href="${'https://web.whatsapp.com/send?text=Присоединяйся к Zor.Store по моей ссылке и получай призы' + shortUrl}" class="btn btn-outline-dark btn-block" role="button" target="_blank"><i class="fa fa-whatsapp">&nbsp;</i>Whatsapp</a>
+    <br>
+    <a th:href="${'https://t.me/share/url?url=' + shortUrl + '&text=Присоединяйся к Zor.Store по моей ссылке и получай призы'}" class="btn btn-outline-dark btn-block" role="button" target="_blank"><i class="fa fa-telegram">&nbsp;</i>Telegram</a>
+    <br>
+    <a th:href="${'https://www.facebook.com/sharer/sharer.php?u=' + shortUrl}" class="btn btn-outline-dark btn-block" role="button" target="_blank"><i class="fab fa-facebook">&nbsp;</i>Facebook</a>
+    <br>
+    <a th:href="${'https://vk.com/share.php?url=' + shortUrl}" class="btn btn-outline-dark btn-block" role="button" target="_blank"><i class="fab fa-vk">&nbsp;</i>VK</a>
+    <br>
+    <a th:href="${'https://twitter.com/intent/tweet?text=' + shortUrl}" class="btn btn-outline-dark btn-block" role="button" target="_blank"><i class="fab fa-twitter">&nbsp;</i>Twitter</a>
+  </div>
+  <div class="footer mt-5">
+    <hr/>
+    <h6>Сделано с <span class="love">♥</span> в городе Бишкек, Кыргызстан</h6>
+    <h6>
+      Сделано для Вас компанией
+      <a href="https://zor.store" class="name" target="_blank"> Zor.Store </a>
+      <a id="email" href="mailto:info@zor.store"> <i class="fa fa-envelope"> </i> </a>
+    </h6>
+  </div>
+</div>
+<script src="https://kit.fontawesome.com/ebc2e403f1.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    const ref =  $('#referralLink');
+    ref.tooltip({placement: 'top',trigger: 'manual'}).tooltip('show');
+    ref.on("click", function (event) {
+      event.preventDefault();
+      navigator.clipboard.writeText(ref.attr("href")).then(function () {
+        ref.attr('data-original-title', "Скопировано!").tooltip('show');
+      })
+    })
+  })
+</script>
+</body>
+
+</html>

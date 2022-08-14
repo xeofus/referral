@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  postgres-alpine:
+    image: postgres:10-alpine
+    environment:
+      POSTGRES_PASSWORD: Y9b&3s(D66s3a(!
+    ports:
+      - "5432:5432"
+
+  referral:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: referral
+    restart: on-failure
+    depends_on:
+      - postgres-alpine
+    ports:
+      - "8080:8080"
