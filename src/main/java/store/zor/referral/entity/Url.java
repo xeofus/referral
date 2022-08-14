@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -15,8 +14,8 @@ import java.util.Date;
 @Table(name = "url")
 public class Url {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @SequenceGenerator(initialValue=100000, allocationSize=1, name = "url_sequence", sequenceName="url_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "URL_SQ")
+    @SequenceGenerator(name = "URL_SQ", sequenceName = "URL_SQ", allocationSize = 1,initialValue=100000)
     private long id;
 
     @Column(nullable = false, unique = true)

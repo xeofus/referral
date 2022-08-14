@@ -13,12 +13,17 @@ import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
 @Service
 public class UrlService {
     private final UrlRepository urlRepository;
     private final HitsRepository hitsRepository;
     private final BaseConversion conversion;
+
+    public UrlService(UrlRepository urlRepository, HitsRepository hitsRepository, BaseConversion conversion) {
+        this.urlRepository = urlRepository;
+        this.hitsRepository = hitsRepository;
+        this.conversion = conversion;
+    }
 
     @Value("${referrer.baseurl}")
     private String baseUrl;
